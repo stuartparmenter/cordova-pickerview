@@ -91,7 +91,7 @@
 	// Create actionSheet
 	self.actionSheet = [[UIActionSheet alloc] initWithTitle:title
 												   delegate:self
-										  cancelButtonTitle:nil
+										  cancelButtonTitle:@""
 									 destructiveButtonTitle:nil
 										  otherButtonTitles:nil];
 
