@@ -315,11 +315,8 @@
 {
 	DLog(@"popoverControllerDidDismissPopover");
 
-	// Retreive pickerView
-	NSArray *subviews = [self.popoverController.contentViewController.view subviews];
-	UIPickerView *pickerView = [subviews objectAtIndex:0];
 	// Simulate a cancel click
-	[self sendResultsFromPickerView:pickerView withButtonIndex:0];
+	[self sendResultsFromPickerView:self.pickerView withButtonIndex:0];
 }
 
 // Popover emulated button-powered dismiss - iPad
@@ -329,10 +326,7 @@
 
 	// Manually dismiss the popover
 	[self.popoverController dismissPopoverAnimated:animated];
-	// Retreive pickerView
-	NSArray *subviews = [self.popoverController.contentViewController.view subviews];
-	UIPickerView *pickerView = [subviews objectAtIndex:0];
-	[self sendResultsFromPickerView:pickerView withButtonIndex:buttonIndex];
+	[self sendResultsFromPickerView:self.pickerView withButtonIndex:buttonIndex];
 }
 
 // ActionSheet generic dismiss - iPhone
@@ -340,20 +334,7 @@
 {
 	DLog(@"didDismissWithButtonIndex:%d", buttonIndex);
 
-	// Retreive pickerView
-  NSArray *subviews = [self.actionSheet subviews];
-
-  int pickerPosition;
-
-  int systemMajorVersion = [[[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."] objectAtIndex:0] integerValue];
-  if (systemMajorVersion == 7){
-    pickerPosition = 2;
-  }else{
-    pickerPosition = 1;
-  }
-
-  UIPickerView *pickerView = [subviews objectAtIndex:pickerPosition];
-	[self sendResultsFromPickerView:pickerView withButtonIndex:buttonIndex];
+	[self sendResultsFromPickerView:self.pickerView withButtonIndex:buttonIndex];
 }
 
 //
