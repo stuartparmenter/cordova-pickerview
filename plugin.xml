@@ -6,19 +6,17 @@
 
 	<name>PickerView</name>
 
-	<asset src="www/PickerView.js" target="PickerView.js" />
-
 	<!-- ios -->
 	<platform name="ios">
 
-	    <config-file target="config.xml" parent="/*">
+		<config-file target="config.xml" parent="/*">
 			<feature name="PickerView">
 				<param name="ios-package" value="PickerView" />
 			</feature>
 		</config-file>
 
 		<js-module src="www/PickerView.js" name="PickerView">
-			<clobbers target="camera" />
+			<clobbers target="window.plugins.pickerView" />
 		</js-module>
 
 		<header-file src="src/ios/PickerView.h" />
