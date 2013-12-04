@@ -322,6 +322,7 @@
 
   int pickerPosition;
 
+  int systemMajorVersion = [[[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."] objectAtIndex:0] integerValue];
   if (systemMajorVersion == 7){
     pickerPosition = 2;
   }else{
