@@ -103,25 +103,48 @@
 	// Append pickerView
 	[self.actionSheet addSubview:self.pickerView];
 
-	// Create segemented cancel button
-	UISegmentedControl *cancelButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:cancelButtonLabel]];
-	cancelButton.momentary = YES;
-	cancelButton.frame = CGRectMake(5.0f, 7.0f, 50.0f, 30.0f);
-	cancelButton.segmentedControlStyle = UISegmentedControlStyleBar;
-	cancelButton.tintColor = [UIColor blackColor];
-	[cancelButton addTarget:self action:@selector(segmentedControl:didDismissWithCancelButton:) forControlEvents:UIControlEventValueChanged];
-	// Append close button
-	[self.actionSheet addSubview:cancelButton];
 
-	// Create segemented done button
-	UISegmentedControl *doneButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:doneButtonLabel]];
-	doneButton.momentary = YES;
-	doneButton.frame = CGRectMake(265.0f, 7.0f, 50.0f, 30.0f);
-	doneButton.segmentedControlStyle = UISegmentedControlStyleBar;
-	doneButton.tintColor = [UIColor colorWithRed:51.0f/255.0f green:102.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
-	[doneButton addTarget:self action:@selector(segmentedControl:didDismissWithDoneButton:) forControlEvents:UIControlEventValueChanged];
-	// Append done button
-	[self.actionSheet addSubview:doneButton];
+    NSInteger iOSVersion = [[[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."] objectAtIndex:0] integerValue];
+    if (iOSVersion >= 7){
+        // Create segemented cancel button
+        UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(16.0f, 7.0f, 100.0f, 30.0f)];
+        cancelButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        cancelButton.tintColor = [UIColor blackColor];
+        [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [cancelButton addTarget:self action:@selector(segmentedControl:didDismissWithCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+        // Append close button
+        [self.actionSheet addSubview:cancelButton];
+
+        // Create segemented done button
+        UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(205.0f, 7.0f, 100.0f, 30.0f)];
+        doneButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [doneButton setTitle:@"Done" forState:UIControlStateNormal];
+        [doneButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:102.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [doneButton addTarget:self action:@selector(segmentedControl:didDismissWithDoneButton:) forControlEvents:UIControlEventTouchUpInside];
+        // Append done button
+        [self.actionSheet addSubview:doneButton];
+    } else {
+        // Create segemented cancel button
+        UISegmentedControl *cancelButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:cancelButtonLabel]];
+        cancelButton.momentary = YES;
+        cancelButton.frame = CGRectMake(5.0f, 7.0f, 50.0f, 30.0f);
+        cancelButton.segmentedControlStyle = UISegmentedControlStyleBar;
+        cancelButton.tintColor = [UIColor blackColor];
+        [cancelButton addTarget:self action:@selector(segmentedControl:didDismissWithCancelButton:) forControlEvents:UIControlEventValueChanged];
+        // Append close button
+        [self.actionSheet addSubview:cancelButton];
+
+        // Create segemented done button
+        UISegmentedControl *doneButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:doneButtonLabel]];
+        doneButton.momentary = YES;
+        doneButton.frame = CGRectMake(265.0f, 7.0f, 50.0f, 30.0f);
+        doneButton.segmentedControlStyle = UISegmentedControlStyleBar;
+        doneButton.tintColor = [UIColor colorWithRed:51.0f/255.0f green:102.0f/255.0f blue:153.0f/255.0f alpha:1.0f];
+        [doneButton addTarget:self action:@selector(segmentedControl:didDismissWithDoneButton:) forControlEvents:UIControlEventValueChanged];
+        // Append done button
+        [self.actionSheet addSubview:doneButton];
+    }
 
 	//[actionSheet sendSubviewToBack:pickerView];
 
