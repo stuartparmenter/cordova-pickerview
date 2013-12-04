@@ -107,7 +107,8 @@
     NSInteger iOSVersion = [[[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."] objectAtIndex:0] integerValue];
     if (iOSVersion >= 7){
         // Create segemented cancel button
-        UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(16.0f, 7.0f, 100.0f, 30.0f)];
+        UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 44.0f)];
+        cancelButton.contentEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
         cancelButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
         cancelButton.tintColor = [UIColor blackColor];
@@ -117,7 +118,8 @@
         [self.actionSheet addSubview:cancelButton];
 
         // Create segemented done button
-        UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(205.0f, 7.0f, 100.0f, 30.0f)];
+        UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(220.0f, 0.0f, 100.0f, 44.0f)];
+        doneButton.contentEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 20);
         doneButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [doneButton setTitle:@"Done" forState:UIControlStateNormal];
         [doneButton setTitleColor:[UIColor colorWithRed:51.0f/255.0f green:102.0f/255.0f blue:153.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
